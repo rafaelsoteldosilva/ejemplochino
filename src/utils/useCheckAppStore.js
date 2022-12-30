@@ -4,14 +4,13 @@ import store from "../appStore/store";
 
 import { getMenu } from "../slices/restaurantMenuSlice";
 
-export function useCheckRedux() {
+export function useCheckAppStore() {
     const dispatch = useDispatch();
 
     if (
         !store.getState().restaurantMenu.restaurantMenuStatus !==
         globalConstants.menuReadingSucceeded
     ) {
-        // dispatch(resetMenu());
         dispatch(getMenu(1));
     }
     return;

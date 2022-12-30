@@ -5,16 +5,14 @@ import SignInSignUp from "../screens/SignInSignUp";
 import InternalLayout from "./InternalLayout";
 import { ScreenTextContext } from "../globalContexts/screenTextContext";
 import MyDrawer from "../drawer/MyDrawer";
-import { useCheckRedux } from "../utils/useCheckRedux";
 
 const Stack = createStackNavigator();
 const MainLayout = () => {
     const { screenText, setScreenText } = React.useContext(ScreenTextContext);
-    useCheckRedux();
 
     return (
         <Stack.Navigator
-            initialRouteName={"Drawer"}
+            initialRouteName={"InternalLayout"}
             screenOptions={{
                 headerShown: true,
                 headerStatusBarHeight: 20,

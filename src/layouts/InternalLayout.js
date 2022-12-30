@@ -2,39 +2,56 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import Home from "../screens/Home";
 import MenuCard from "../screens/MenuCard";
+import { useCheckAppStore } from "../utils/useCheckAppStore";
 
 const Tab = createBottomTabNavigator();
 const InternalLayout = () => {
+    useCheckAppStore();
+
     return (
-        <Tab.Navigator initialRouteName="Home">
+        <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                tabBarActiveTintColor: "white",
+                tabBarInactiveTintColor: "black",
+                tabBarStyle: {
+                    backgroundColor: "gray",
+                },
+            }}
+        >
             <Tab.Screen
                 name="Home"
-                options={{
+                options={({ route }) => ({
                     headerShown: true,
-                    statusBar: {
-                        visible: true,
-                        backgroundColor: "#fff",
-                    },
                     headerStyle: {
                         backgroundColor: "gray",
+                        height: 70,
                     },
                     headerTintColor: "black",
-                }}
+
+                    // headerLeft: () => (
+                    //     <DrawerButton
+                    //         onPress={() => navigation.toggleDrawer()}
+                    //     />
+                    // ),
+                })}
                 component={Home}
             />
             <Tab.Screen
                 name="Menu Card"
-                options={{
+                options={({ route }) => ({
                     headerShown: true,
-                    statusBar: {
-                        visible: true,
-                        backgroundColor: "#fff",
-                    },
                     headerStyle: {
                         backgroundColor: "gray",
+                        height: 70,
                     },
                     headerTintColor: "black",
-                }}
+                    // headerLeft: () => (
+                    //     <DrawerButton
+                    //         onPress={() => navigation.toggleDrawer()}
+                    //     />
+                    // ),
+                })}
                 component={MenuCard}
             />
         </Tab.Navigator>

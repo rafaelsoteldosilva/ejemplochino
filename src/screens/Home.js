@@ -16,18 +16,24 @@ export default function Home() {
 
     function showMenu() {
         console.log("--------------------------------------------------------");
+        console.log("Menu:: ");
         // menu = store.getState().restaurantMenu.restaurantMenu;
-        console.log("Home:: ", menu);
+        console.log(JSON.stringify(menu, null, 4));
     }
 
     function reloadMenu() {
         dispatch(getMenu(1));
     }
 
+    function showStatus() {
+        console.log(store.getState().restaurantMenu.restaurantMenuStatus);
+    }
+
     return (
         <View style={AppStyle.appStyle}>
             <Text style={{ marginTop: 50, color: "white" }}>Home</Text>
             <Button onPress={showMenu} title="show Menu" />
+            <Button onPress={showStatus} title="show status" />
             <Button onPress={reloadMenu} title="reload Menu" />
         </View>
     );
