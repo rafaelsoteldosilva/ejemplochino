@@ -3,16 +3,14 @@ import { View, Text, FlatList, Button } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getRestaurantMenu } from "../slices/restaurantMenuSlice";
+import { ScreenTextContext } from "../globalContexts/screenTextContext";
 
 import { AppStyle } from "../globalDefinitions/globalStyles";
 import { ShowAnItem } from "../components/ShowAnItem";
 
 export default function MenuCard() {
     const menu = useSelector(getRestaurantMenu);
-
-    function showMenu() {
-        console.log(menu.categories[0].category.id);
-    }
+    const { screenText, setScreenText } = React.useContext(ScreenTextContext);
 
     return (
         <View style={AppStyle.appStyle}>

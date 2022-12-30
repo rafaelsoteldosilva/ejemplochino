@@ -3,28 +3,24 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import SignInSignUp from "../screens/SignInSignUp";
 import InternalLayout from "./InternalLayout";
-import { ScreenTextContext } from "../globalContexts/screenTextContext";
+// import { ScreenTextContext } from "../globalContexts/screenTextContext";
 import MyDrawer from "../drawer/MyDrawer";
 
 const Stack = createStackNavigator();
 const MainLayout = () => {
-    const { screenText, setScreenText } = React.useContext(ScreenTextContext);
+    // const { screenText, setScreenText } = React.useContext(ScreenTextContext);
 
     return (
         <Stack.Navigator
             initialRouteName={"InternalLayout"}
             screenOptions={{
                 headerShown: true,
-                headerStatusBarHeight: 20,
+                headerStatusBarHeight: 25,
             }}
         >
             <Stack.Screen
                 name="Signin"
-                navigationOptions={{
-                    headerShown: false,
-                }}
                 options={{
-                    title: `${screenText}`,
                     headerShown: true,
                     statusBar: {
                         visible: true,

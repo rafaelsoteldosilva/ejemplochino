@@ -29,11 +29,13 @@ export const ShowAnItem = ({
                     // styles.wrapperCustom,
                 ]}
             >
-                <Text style={{ color: "#b1b7ba" }}>{itemName}</Text>
+                <Text style={{ color: "#b1b7ba", marginTop: 20 }}>
+                    {itemName}
+                </Text>
                 <Text style={{ color: "#b1b7ba" }}>{itemDescription}</Text>
                 <Image
                     source={{ uri: itemImage }}
-                    style={{ width: 360, height: 150, marginBottom: 20 }}
+                    style={{ width: 360, height: 150, marginBottom: 10 }}
                 />
             </Pressable>
         </View>

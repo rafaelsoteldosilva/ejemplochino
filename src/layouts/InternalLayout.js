@@ -25,15 +25,9 @@ const InternalLayout = () => {
                     headerShown: true,
                     headerStyle: {
                         backgroundColor: "gray",
-                        height: 70,
+                        height: 25,
                     },
                     headerTintColor: "black",
-
-                    // headerLeft: () => (
-                    //     <DrawerButton
-                    //         onPress={() => navigation.toggleDrawer()}
-                    //     />
-                    // ),
                 })}
                 component={Home}
             />
@@ -43,14 +37,9 @@ const InternalLayout = () => {
                     headerShown: true,
                     headerStyle: {
                         backgroundColor: "gray",
-                        height: 70,
+                        height: 25,
                     },
                     headerTintColor: "black",
-                    // headerLeft: () => (
-                    //     <DrawerButton
-                    //         onPress={() => navigation.toggleDrawer()}
-                    //     />
-                    // ),
                 })}
                 component={MenuCard}
             />

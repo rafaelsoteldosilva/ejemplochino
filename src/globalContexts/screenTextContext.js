@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 export const ScreenTextContext = React.createContext("hola");
 
 export const ScreenTextContextProvider = ({ children }) => {
-    const [screenText, setScreenText] = useState("hola");
+    const [screenText, setScreenText] = useState("");
     // const value = useMemo(
     //     () => ({ screenText, setScreenText }),
     //     [screenText, setScreenText]
