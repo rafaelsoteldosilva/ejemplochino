@@ -32,9 +32,11 @@ export const globalStyle = (show, disable, error, active) =>
         },
     });
 
-export const AppStyle = StyleSheet.create({
-    appStyle: {
-        flex: 1,
-        backgroundColor: "black",
-    },
-});
+export const AppStyle = (insets) =>
+    StyleSheet.create({
+        applicationStyle: {
+            flex: 1,
+            backgroundColor: "black",
+            paddingTop: insets.top - 10,
+        },
+    });

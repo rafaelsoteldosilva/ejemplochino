@@ -5,49 +5,56 @@ import SignInSignUp from "../screens/SignInSignUp";
 import InternalLayout from "./InternalLayout";
 // import { ScreenTextContext } from "../globalContexts/screenTextContext";
 import MyDrawer from "../drawer/MyDrawer";
+import { AppStyle } from "../globalDefinitions/globalStyles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 const Stack = createStackNavigator();
 const MainLayout = () => {
-    // const { screenText, setScreenText } = React.useContext(ScreenTextContext);
+    const insets = useSafeAreaInsets();
 
     return (
-        <Stack.Navigator
-            initialRouteName={"InternalLayout"}
-            screenOptions={{
-                headerShown: true,
-                headerStatusBarHeight: 25,
-            }}
-        >
-            <Stack.Screen
-                name="Signin"
-                options={{
+        <View style={AppStyle(insets).applicationStyle}>
+            <StatusBar style="light" />
+            <Stack.Navigator
+                initialRouteName={"InternalLayout"}
+                screenOptions={{
                     headerShown: true,
-                    statusBar: {
-                        visible: true,
-                        backgroundColor: "#fff",
-                    },
-                    headerStyle: {
-                        backgroundColor: "gray",
-                    },
-                    headerTintColor: "black",
+                    headerStatusBarHeight: 25,
                 }}
-                component={SignInSignUp}
-            />
-            <Stack.Screen
-                name="InternalLayout"
-                options={{
-                    headerShown: false,
-                }}
-                component={InternalLayout}
-            />
-            <Stack.Screen
-                name="Drawer"
-                options={{
-                    headerShown: false,
-                }}
-                component={MyDrawer}
-            />
-        </Stack.Navigator>
+            >
+                <Stack.Screen
+                    name="Signin"
+                    options={{
+                        headerShown: true,
+                        statusBar: {
+                            visible: true,
+                            backgroundColor: "#fff",
+                        },
+                        headerStyle: {
+                            backgroundColor: "gray",
+                        },
+                        headerTintColor: "black",
+                    }}
+                    component={SignInSignUp}
+                />
+                <Stack.Screen
+                    name="InternalLayout"
+                    options={{
+                        headerShown: false,
+                    }}
+                    component={InternalLayout}
+                />
+                <Stack.Screen
+                    name="Drawer"
+                    options={{
+                        headerShown: false,
+                    }}
+                    component={MyDrawer}
+                />
+            </Stack.Navigator>
+        </View>
     );
 };
 export default MainLayout;

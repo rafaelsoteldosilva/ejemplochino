@@ -8,7 +8,8 @@ import {
     Image,
     Pressable,
 } from "react-native";
-import { globalStyle } from "../globalDefinitions/globalStyles";
+import { AppStyle } from "../globalDefinitions/globalStyles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const ShowAnItem = ({
     itemName,
@@ -16,8 +17,10 @@ export const ShowAnItem = ({
     itemImage,
     categoryIndex,
 }) => {
+    const insets = useSafeAreaInsets();
+
     return (
-        <View>
+        <View style={AppStyle(insets).applicationStyle}>
             <Pressable
                 // onPress={() => {
                 //     setTimesPressed((current) => current + 1);
@@ -29,9 +32,7 @@ export const ShowAnItem = ({
                     // styles.wrapperCustom,
                 ]}
             >
-                <Text style={{ color: "#b1b7ba", marginTop: 20 }}>
-                    {itemName}
-                </Text>
+                <Text style={{ color: "#b1b7ba" }}>{itemName}</Text>
                 <Text style={{ color: "#b1b7ba" }}>{itemDescription}</Text>
                 <Image
                     source={{ uri: itemImage }}

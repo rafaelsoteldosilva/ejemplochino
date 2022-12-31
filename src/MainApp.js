@@ -5,15 +5,17 @@ import store from "../src/appStore/store";
 import MainLayout from "./layouts/MainLayout";
 
 import { ScreenTextContextProvider } from "./globalContexts/screenTextContext";
-import MyDrawer from "./drawer/MyDrawer";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function MainApp() {
     return (
         <Provider store={store}>
             <NavigationContainer>
-                <ScreenTextContextProvider>
-                    <MainLayout />
-                </ScreenTextContextProvider>
+                <SafeAreaProvider>
+                    <ScreenTextContextProvider>
+                        <MainLayout />
+                    </ScreenTextContextProvider>
+                </SafeAreaProvider>
             </NavigationContainer>
         </Provider>
     );

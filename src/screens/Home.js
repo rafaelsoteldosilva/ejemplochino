@@ -6,12 +6,15 @@ import * as globalConstants from "../globalDefinitions/globalConstants";
 import store from "../appStore/store";
 
 import { getRestaurantMenu } from "../slices/restaurantMenuSlice";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { AppStyle } from "../globalDefinitions/globalStyles";
 
 export default function Home() {
     // const { screenText, setScreenText } = React.useContext(ScreenTextContext);
     const menu = useSelector(getRestaurantMenu);
+    const insets = useSafeAreaInsets();
+
     // const status = useSelector(getRestaurantMenuStatus);
 
     // If data is not loaded show Loading...
@@ -19,18 +22,20 @@ export default function Home() {
         store.getState().restaurantMenu.restaurantMenuStatus !==
         globalConstants.menuReadingSucceeded
     )
-        return <Text style={{ color: "white" }}>Loading...</Text>;
+        return (
+            <Text style={{ color: "white", paddingTop: insets.top }}>
+                Loading...
+            </Text>
+        );
     else
         return (
-            <View style={AppStyle.appStyle}>
-                {/* <Text style={{ color: "white" }}>Home</Text> */}
+            <View style={AppStyle(insets).applicationStyle}>
                 <Image
                     source={{ uri: menu.restaurant.facade_image_url }}
                     style={{
                         width: 360,
                         height: 150,
                         marginBottom: 10,
-                        marginTop: 20,
                     }}
                 />
             </View>
