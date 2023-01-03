@@ -8,6 +8,7 @@ import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import ShowCategories from "../screens/ShowCategories";
 import ShowDishes from "../screens/ShowDishes";
+import ShowDish from "../screens/ShowDish";
 
 const MainTab = createBottomTabNavigator();
 const InternalLayout = () => {
@@ -51,6 +52,15 @@ const InternalLayout = () => {
                 <MainTab.Screen
                     name="ShowDishes"
                     component={ShowDishes}
+                    options={({ route }) => ({
+                        headerShown: false,
+                        tabBarButton: () => null,
+                        tabBarVisible: false, //hide tab bar on this screen
+                    })}
+                />
+                <MainTab.Screen
+                    name="ShowDish"
+                    component={ShowDish}
                     options={({ route }) => ({
                         headerShown: false,
                         tabBarButton: () => null,

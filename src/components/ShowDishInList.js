@@ -17,15 +17,24 @@ export const ShowDishInList = ({
     itemImage,
     itemPrice,
     itemIndex,
+    categoryIndex,
+    navigation,
 }) => {
     const insets = useSafeAreaInsets();
 
     return (
         <View style={AppStyle(insets).applicationStyle}>
             <Pressable
-                // onPress={() => {
-                //     setTimesPressed((current) => current + 1);
-                // }}
+                onPress={() => {
+                    let propsForShowDish = {
+                        categoryIndex: { categoryIndex },
+                        itemIndex: { itemIndex },
+                    };
+
+                    navigation.navigate("ShowDish", {
+                        propsForShowDish: propsForShowDish,
+                    });
+                }}
                 style={({ pressed }) => [
                     {
                         backgroundColor: pressed ? "gray" : "black",
