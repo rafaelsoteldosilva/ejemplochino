@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loadWholeMenuFromApi } from "../API/axiosAPICalls";
 import * as globalConstants from "../globalDefinitions/globalConstants";
 import _ from "lodash";
-import { mySampleMenu } from "../utils/sampleData";
+import { sampleMenu, sampleMenuWithImages } from "../utils/sampleData";
 
 export const getMenu = createAsyncThunk(
     "menu/fetchMenu",
@@ -16,7 +16,7 @@ export const getMenu = createAsyncThunk(
             //         console.log("fetchMenu:: error: ", error);
             //         reject(error);
             //     });
-            resolve(mySampleMenu);
+            resolve(sampleMenu);
         });
         return menuPromise;
     }

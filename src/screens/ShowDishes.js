@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, FlatList, Button } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -6,14 +6,15 @@ import * as globalConstants from "../globalDefinitions/globalConstants";
 
 import store from "../appStore/store";
 
-import { ShowAnItem } from "../components/ShowAnItem";
+import { ShowDishInList } from "../components/ShowDishInList";
 import { getRestaurantMenu } from "../slices/restaurantMenuSlice";
 import { AppStyle } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function MenuCard() {
+export default function ShowDishes(props) {
     const menu = useSelector(getRestaurantMenu);
     const insets = useSafeAreaInsets();
+
     // const status = useSelector(getRestaurantMenuStatus);
     if (
         store.getState().restaurantMenu.restaurantMenuStatus !==
@@ -28,15 +29,20 @@ export default function MenuCard() {
         return (
             <View style={AppStyle(insets).applicationStyle}>
                 <FlatList
-                    data={menu.categories}
-                    keyExtractor={(item) => item.category.id}
+                    data={
+                        menu.categories[
+                            props.route.params.categoryIndex.itemIndex
+                        ].dishes
+                    }
+                    keyExtractor={(item) => item.dish.id}
                     renderItem={({ item, index }) => {
                         return (
-                            <ShowAnItem
+                            <ShowDishInList
                                 itemIndex={index}
-                                itemName={item.category.name}
-                                itemImage={item.category.image_url}
-                                itemDescription={item.category.description}
+                                itemName={item.dish.name}
+                                itemImage={item.dish.image_url}
+                                itemDescription={item.dish.description}
+                                itemPrice={item.dish.price}
                             />
                         );
                     }}

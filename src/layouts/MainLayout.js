@@ -10,21 +10,21 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-const Stack = createStackNavigator();
+const MainStack = createStackNavigator();
 const MainLayout = () => {
     const insets = useSafeAreaInsets();
 
     return (
         <View style={AppStyle(insets).applicationStyle}>
             <StatusBar style="light" />
-            <Stack.Navigator
+            <MainStack.Navigator
                 initialRouteName={"InternalLayout"}
                 screenOptions={{
                     headerShown: true,
                     headerStatusBarHeight: 25,
                 }}
             >
-                <Stack.Screen
+                <MainStack.Screen
                     name="Signin"
                     options={{
                         headerShown: true,
@@ -39,21 +39,21 @@ const MainLayout = () => {
                     }}
                     component={SignInSignUp}
                 />
-                <Stack.Screen
+                <MainStack.Screen
                     name="InternalLayout"
                     options={{
                         headerShown: false,
                     }}
                     component={InternalLayout}
                 />
-                <Stack.Screen
+                {/* <MainStack.Screen
                     name="Drawer"
                     options={{
                         headerShown: false,
                     }}
                     component={MyDrawer}
-                />
-            </Stack.Navigator>
+                /> */}
+            </MainStack.Navigator>
         </View>
     );
 };

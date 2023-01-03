@@ -11,11 +11,12 @@ import {
 import { AppStyle } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const ShowAnItem = ({
+export const ShowDishInList = ({
     itemName,
     itemDescription,
     itemImage,
-    categoryIndex,
+    itemPrice,
+    itemIndex,
 }) => {
     const insets = useSafeAreaInsets();
 
@@ -34,6 +35,7 @@ export const ShowAnItem = ({
             >
                 <Text style={{ color: "#b1b7ba" }}>{itemName}</Text>
                 <Text style={{ color: "#b1b7ba" }}>{itemDescription}</Text>
+                <Text style={{ color: "#b1b7ba" }}>{itemPrice}</Text>
                 <Image
                     source={{ uri: itemImage }}
                     style={{ width: 360, height: 150, marginBottom: 10 }}

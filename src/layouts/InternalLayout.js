@@ -1,14 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import Home from "../screens/Home";
-import MenuCard from "../screens/MenuCard";
 import { useCheckAppStore } from "../utils/useCheckAppStore";
 import { AppStyle } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import ShowCategories from "../screens/ShowCategories";
+import ShowDishes from "../screens/ShowDishes";
 
-const Tab = createBottomTabNavigator();
+const MainTab = createBottomTabNavigator();
 const InternalLayout = () => {
     const insets = useSafeAreaInsets();
 
@@ -18,8 +19,8 @@ const InternalLayout = () => {
         <View style={AppStyle(insets).applicationStyle}>
             <StatusBar style="light" />
 
-            <Tab.Navigator
-                initialRouteName="Home"
+            <MainTab.Navigator
+                initialRouteName="Menu Card"
                 screenOptions={{
                     tabBarActiveTintColor: "white",
                     tabBarInactiveTintColor: "black",
@@ -28,7 +29,7 @@ const InternalLayout = () => {
                     },
                 }}
             >
-                <Tab.Screen
+                <MainTab.Screen
                     name="Home"
                     options={({ route }) => ({
                         headerShown: false,
@@ -40,14 +41,23 @@ const InternalLayout = () => {
                     })}
                     component={Home}
                 />
-                <Tab.Screen
+                <MainTab.Screen
                     name="Menu Card"
                     options={({ route }) => ({
                         headerShown: false,
                     })}
-                    component={MenuCard}
+                    component={ShowCategories}
                 />
-            </Tab.Navigator>
+                <MainTab.Screen
+                    name="ShowDishes"
+                    component={ShowDishes}
+                    options={({ route }) => ({
+                        headerShown: false,
+                        tabBarButton: () => null,
+                        tabBarVisible: false, //hide tab bar on this screen
+                    })}
+                />
+            </MainTab.Navigator>
         </View>
     );
 };
