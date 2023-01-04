@@ -2,12 +2,42 @@ import { StyleSheet } from "react-native";
 
 import { globalTheme } from "./globalConstants";
 
-export const globalStyle = (show, disable, error, active) =>
+const baseText = {
+    marginTop: 5,
+    marginBottom: 5,
+    color: globalTheme.textColor,
+    fontFamily: "LobsterTwo_400Regular_Italic",
+    fontSize: 24,
+};
+
+export const globalTextStyle = StyleSheet.create({
+    text: {
+        ...baseText,
+    },
+    compactText: {
+        ...baseText,
+        marginTop: 3,
+        marginBottom: 3,
+    },
+    price: {
+        ...baseText,
+        fontFamily: "LobsterTwo_700Bold_Italic",
+        fontSize: 20,
+        marginBottom: 10,
+        textAlign: "right",
+        color: globalTheme.priceColor,
+    },
+});
+
+export const globalImageStyle = StyleSheet.create({
+    image: {
+        width: 360,
+        height: 150,
+    },
+});
+
+export const globalButtonStyle = (show, disable, error, active) =>
     StyleSheet.create({
-        text: {
-            marginTop: 25,
-            color: globalTheme.textColor,
-        },
         button: {
             width: 120,
             backgroundColor: globalTheme.buttonsBackgroundColor,
@@ -37,6 +67,7 @@ export const AppStyle = (insets) =>
         applicationStyle: {
             flex: 1,
             backgroundColor: "black",
+            padding: 5,
             paddingTop: insets.top - 10,
         },
     });

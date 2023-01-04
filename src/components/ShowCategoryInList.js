@@ -8,7 +8,11 @@ import {
     Image,
     Pressable,
 } from "react-native";
-import { AppStyle } from "../globalDefinitions/globalStyles";
+import {
+    AppStyle,
+    globalImageStyle,
+    globalTextStyle,
+} from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const ShowCategoryInList = ({
@@ -35,11 +39,13 @@ export const ShowCategoryInList = ({
                     // styles.wrapperCustom,
                 ]}
             >
-                <Text style={{ color: "#b1b7ba" }}>{itemName}</Text>
-                <Text style={{ color: "#b1b7ba" }}>{itemDescription}</Text>
+                <Text style={globalTextStyle.text}>{itemName}</Text>
+                <Text style={globalTextStyle.compactText}>
+                    {itemDescription}
+                </Text>
                 <Image
                     source={{ uri: itemImage }}
-                    style={{ width: 360, height: 150, marginBottom: 10 }}
+                    style={globalImageStyle.image}
                 />
             </Pressable>
         </View>

@@ -11,6 +11,7 @@ export const globalTheme = {
     categoryCardBackgroundColor: "gray",
     categoryCardBorderColor: "black",
     textColor: "#b1b7ba",
+    priceColor: "#C86CC0",
     fontFamily: "Lobster",
 };
 
