@@ -5,9 +5,7 @@ import store from "../src/appStore/store";
 import MainLayout from "./layouts/MainLayout";
 import { Text } from "react-native";
 
-import { ScreenTextContextProvider } from "./globalContexts/screenTextContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import AppLoading from "expo-app-loading";
 import {
     useFonts,
     LobsterTwo_400Regular,
@@ -30,9 +28,7 @@ export default function MainApp() {
             <Provider store={store}>
                 <NavigationContainer>
                     <SafeAreaProvider>
-                        <ScreenTextContextProvider>
-                            <MainLayout />
-                        </ScreenTextContextProvider>
+                        <MainLayout />
                     </SafeAreaProvider>
                 </NavigationContainer>
             </Provider>

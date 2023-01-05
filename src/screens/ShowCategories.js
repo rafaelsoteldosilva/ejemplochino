@@ -20,8 +20,8 @@ export default function ShowCategories({ navigation }) {
         globalConstants.menuReadingSucceeded
     )
         return (
-            <Text style={{ color: "white", paddingTop: insets.top }}>
-                Loading...
+            <Text style={{ color: "black", paddingTop: insets.top }}>
+                ShowCategories Loading...
             </Text>
         );
     else

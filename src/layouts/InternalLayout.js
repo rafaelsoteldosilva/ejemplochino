@@ -7,68 +7,72 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import ShowCategories from "../screens/ShowCategories";
+import DishesNavigator from "./DishesNavigator";
+import { ArgumentContextProvider } from "../globalContexts/argumentContext";
 import ShowDishes from "../screens/ShowDishes";
 import ShowDish from "../screens/ShowDish";
 
-const MainTab = createBottomTabNavigator();
+const InternalTab = createBottomTabNavigator();
 const InternalLayout = () => {
     const insets = useSafeAreaInsets();
 
     useCheckAppStore();
 
     return (
-        <View style={AppStyle(insets).applicationStyle}>
-            <StatusBar style="light" />
+        <ArgumentContextProvider>
+            <View style={AppStyle(insets).applicationStyle}>
+                <StatusBar style="light" />
 
-            <MainTab.Navigator
-                initialRouteName="Menu Card"
-                screenOptions={{
-                    tabBarActiveTintColor: "white",
-                    tabBarInactiveTintColor: "black",
-                    tabBarStyle: {
-                        backgroundColor: "gray",
-                    },
-                }}
-            >
-                <MainTab.Screen
-                    name="Home"
-                    options={({ route }) => ({
-                        headerShown: false,
-                        // headerStyle: {
-                        //     backgroundColor: "gray",
-                        //     height: 25,
-                        // },
-                        // headerTintColor: "black",
-                    })}
-                    component={Home}
-                />
-                <MainTab.Screen
-                    name="Menu Card"
-                    options={({ route }) => ({
-                        headerShown: false,
-                    })}
-                    component={ShowCategories}
-                />
-                <MainTab.Screen
-                    name="ShowDishes"
-                    component={ShowDishes}
-                    options={({ route }) => ({
-                        headerShown: false,
-                        tabBarButton: () => null,
-                        tabBarVisible: false, //hide tab bar on this screen
-                    })}
-                />
-                <MainTab.Screen
-                    name="ShowDish"
-                    component={ShowDish}
-                    options={({ route }) => ({
-                        headerShown: false,
-                        tabBarButton: () => null,
-                        tabBarVisible: false, //hide tab bar on this screen
-                    })}
-                />
-            </MainTab.Navigator>
-        </View>
+                <InternalTab.Navigator
+                    initialRouteName="Menu Card"
+                    screenOptions={{
+                        tabBarActiveTintColor: "white",
+                        tabBarInactiveTintColor: "black",
+                        tabBarStyle: {
+                            backgroundColor: "gray",
+                        },
+                    }}
+                >
+                    <InternalTab.Screen
+                        name="Home"
+                        options={({ route }) => ({
+                            headerShown: false,
+                            // headerStyle: {
+                            //     backgroundColor: "gray",
+                            //     height: 25,
+                            // },
+                            // headerTintColor: "black",
+                        })}
+                        component={Home}
+                    />
+                    <InternalTab.Screen
+                        name="Menu Card"
+                        options={({ route }) => ({
+                            headerShown: false,
+                        })}
+                        component={ShowCategories}
+                    />
+                    <InternalTab.Screen
+                        name="ShowDishes"
+                        component={ShowDishes}
+                        options={({ route }) => ({
+                            headerShown: false,
+                            tabBarButton: () => null,
+                            tabBarVisible: false, //hide tab bar on this screen
+                        })}
+                    />
+                    <InternalTab.Screen
+                        name="ShowDish"
+                        component={ShowDish}
+                        options={({ route }) => ({
+                            headerShown: false,
+                            tabBarButton: () => null,
+                            tabBarVisible: false, //hide tab bar on this screen
+                        })}
+                    />
+                </InternalTab.Navigator>
+            </View>
+        </ArgumentContextProvider>
     );
 };
 export default InternalLayout;

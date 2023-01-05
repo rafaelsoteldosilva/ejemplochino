@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text, FlatList, Button, Image } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -13,9 +13,12 @@ import {
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ArgumentContext } from "../globalContexts/argumentContext";
 
 export default function ShowDish(props) {
     const menu = useSelector(getRestaurantMenu);
+    const { argument, setArgument } = useContext(ArgumentContext);
+
     const insets = useSafeAreaInsets();
     let catIndex = props.route.params.propsForShowDish.categoryIndex;
     let dishIndex = props.route.params.propsForShowDish.itemIndex;
@@ -28,7 +31,7 @@ export default function ShowDish(props) {
     )
         return (
             <Text style={{ color: "white", paddingTop: insets.top }}>
-                Loading...
+                ShowDish Loading...
             </Text>
         );
     else

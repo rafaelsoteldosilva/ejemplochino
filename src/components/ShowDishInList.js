@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
     View,
@@ -14,6 +14,7 @@ import {
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+// import { ArgumentContext } from "../globalContexts/argumentContext";
 
 export const ShowDishInList = ({
     itemName,
@@ -25,6 +26,7 @@ export const ShowDishInList = ({
     navigation,
 }) => {
     const insets = useSafeAreaInsets();
+    // const { argument, setArgument } = useContext(ArgumentContext);
 
     return (
         <View style={AppStyle(insets).applicationStyle}>

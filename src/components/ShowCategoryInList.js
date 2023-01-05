@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
     View,
@@ -14,6 +14,7 @@ import {
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ArgumentContext } from "../globalContexts/argumentContext";
 
 export const ShowCategoryInList = ({
     itemName,
@@ -23,20 +24,20 @@ export const ShowCategoryInList = ({
     navigation,
 }) => {
     const insets = useSafeAreaInsets();
+    const { argument, setArgument } = useContext(ArgumentContext);
 
     return (
         <View style={AppStyle(insets).applicationStyle}>
             <Pressable
                 onPress={() => {
-                    navigation.navigate("ShowDishes", {
-                        categoryIndex: { itemIndex },
-                    });
+                    setArgument(itemIndex);
+
+                    navigation.navigate("ShowDishes");
                 }}
                 style={({ pressed }) => [
                     {
                         backgroundColor: pressed ? "gray" : "black",
                     },
-                    // styles.wrapperCustom,
                 ]}
             >
                 <Text style={globalTextStyle.text}>{itemName}</Text>
