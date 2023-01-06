@@ -15,10 +15,10 @@ export default function StarRating({
     itIsEditable,
     averageRating,
 }) {
-    const [starRating, setStarRating] = useState(null);
+    const [starRating, setStarRating] = useState(averageRating);
 
     useEffect(() => {
-        if (!isDish && !itIsEditable) {
+        if (!itIsEditable) {
             setStarRating(averageRating);
         }
     }, []);
@@ -29,65 +29,63 @@ export default function StarRating({
     }
 
     return (
-        <SafeAreaView>
-            <View style={styles.container}>
-                <TouchableOpacity onPress={() => setRating(1)}>
-                    <MaterialIcons
-                        name={starRating >= 1 ? "star" : "star-border"}
-                        size={32}
-                        style={
-                            starRating >= 1
-                                ? styles.starSelected
-                                : styles.starUnselected
-                        }
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setRating(2)}>
-                    <MaterialIcons
-                        name={starRating >= 2 ? "star" : "star-border"}
-                        size={32}
-                        style={
-                            starRating >= 2
-                                ? styles.starSelected
-                                : styles.starUnselected
-                        }
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setRating(3)}>
-                    <MaterialIcons
-                        name={starRating >= 3 ? "star" : "star-border"}
-                        size={32}
-                        style={
-                            starRating >= 3
-                                ? styles.starSelected
-                                : styles.starUnselected
-                        }
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setRating(4)}>
-                    <MaterialIcons
-                        name={starRating >= 4 ? "star" : "star-border"}
-                        size={32}
-                        style={
-                            starRating >= 4
-                                ? styles.starSelected
-                                : styles.starUnselected
-                        }
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setRating(5)}>
-                    <MaterialIcons
-                        name={starRating >= 5 ? "star" : "star-border"}
-                        size={32}
-                        style={
-                            starRating >= 5
-                                ? styles.starSelected
-                                : styles.starUnselected
-                        }
-                    />
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => setRating(1)}>
+                <MaterialIcons
+                    name={starRating >= 1 ? "star" : "star-border"}
+                    size={32}
+                    style={
+                        starRating >= 1
+                            ? styles.starSelected
+                            : styles.starUnselected
+                    }
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setRating(2)}>
+                <MaterialIcons
+                    name={starRating >= 2 ? "star" : "star-border"}
+                    size={32}
+                    style={
+                        starRating >= 2
+                            ? styles.starSelected
+                            : styles.starUnselected
+                    }
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setRating(3)}>
+                <MaterialIcons
+                    name={starRating >= 3 ? "star" : "star-border"}
+                    size={32}
+                    style={
+                        starRating >= 3
+                            ? styles.starSelected
+                            : styles.starUnselected
+                    }
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setRating(4)}>
+                <MaterialIcons
+                    name={starRating >= 4 ? "star" : "star-border"}
+                    size={32}
+                    style={
+                        starRating >= 4
+                            ? styles.starSelected
+                            : styles.starUnselected
+                    }
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setRating(5)}>
+                <MaterialIcons
+                    name={starRating >= 5 ? "star" : "star-border"}
+                    size={32}
+                    style={
+                        starRating >= 5
+                            ? styles.starSelected
+                            : styles.starUnselected
+                    }
+                />
+            </TouchableOpacity>
+        </View>
     );
 }
 

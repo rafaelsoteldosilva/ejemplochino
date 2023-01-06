@@ -8,9 +8,11 @@ import {
     Modal,
     StyleSheet,
 } from "react-native";
+import { Entypo } from "@expo/vector-icons";
+
 import { useDispatch, useSelector } from "react-redux";
 import * as globalConstants from "../globalDefinitions/globalConstants";
-import { Entypo } from "@expo/vector-icons";
+import RatingReviewsAndSharing from "../components/RatingReviewsAndSharing";
 
 import store from "../appStore/store";
 
@@ -44,29 +46,7 @@ export default function Home() {
         );
     else
         return (
-            <View style={AppStyle(insets).applicationStyle}>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                        setModalVisible(!modalVisible);
-                    }}
-                >
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Hello World!</Text>
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.textStyle}>Hide Modal</Text>
-                            </Pressable>
-                        </View>
-                    </View>
-                </Modal>
-
+            <View style={[AppStyle(insets).applicationStyle]}>
                 <Image
                     source={{ uri: menu.restaurant.facade_image_url }}
                     style={{
@@ -75,142 +55,41 @@ export default function Home() {
                         marginBottom: 10,
                     }}
                 />
-                <StarRating
-                    isDish={false}
-                    categoryIndex={-1}
-                    dishIndex={-1}
-                    averageRating={
-                        menu.restaurant_reviews.reviews_average
-                            .number_of_stars__avg
-                    }
-                    itIsEditable={false}
-                />
-                <View
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                    }}
-                >
-                    <View
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            marginLeft: 20,
-                            justifyContent: "space-between",
+
+                <View>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            setModalVisible(!modalVisible);
                         }}
                     >
-                        <Pressable
-                            style={({ pressed }) => [
-                                styles.itemBox,
-                                pressed && {
-                                    opacity: 0.8,
-                                    backgroundColor: "lightskyblue",
-                                },
-                            ]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <View
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <Entypo
-                                    name="thumbs-up"
-                                    size={20}
-                                    color="white"
-                                />
-                                <Text
-                                    style={[
-                                        { marginLeft: 5, color: "white" },
-                                        globalTextStyle.text,
-                                        {
-                                            fontSize: 20,
-                                            marginTop: 0,
-                                            marginBottom: 0,
-                                        },
-                                    ]}
-                                >
-                                    Add Review
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <Text style={styles.modalText}>
+                                    This is a modal, good!
                                 </Text>
-                            </View>
-                        </Pressable>
-                        <Pressable
-                            style={({ pressed }) => [
-                                styles.itemBox,
-                                pressed && {
-                                    opacity: 0.8,
-                                    backgroundColor: "lightskyblue",
-                                },
-                            ]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <View
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <Entypo
-                                    name="magnifying-glass"
-                                    size={20}
-                                    color="white"
-                                />
-                                <Text
-                                    style={[
-                                        { marginLeft: 5, color: "white" },
-                                        globalTextStyle.text,
-                                        {
-                                            fontSize: 20,
-                                            marginTop: 0,
-                                            marginBottom: 0,
-                                        },
-                                    ]}
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() =>
+                                        setModalVisible(!modalVisible)
+                                    }
                                 >
-                                    Show Reviews
-                                </Text>
+                                    <Text style={styles.textStyle}>
+                                        Hide Modal
+                                    </Text>
+                                </Pressable>
                             </View>
-                        </Pressable>
-                    </View>
-                    <Pressable
-                        style={({ pressed }) => [
-                            styles.itemBox,
-                            pressed && {
-                                opacity: 0.8,
-                                backgroundColor: "lightskyblue",
-                            },
-                        ]}
-                        onPress={() => setModalVisible(!modalVisible)}
-                    >
-                        <View
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Entypo
-                                name="magnifying-glass"
-                                size={20}
-                                color="white"
-                            />
-                            <Text
-                                style={[
-                                    { marginLeft: 5, color: "white" },
-                                    globalTextStyle.text,
-                                    {
-                                        fontSize: 20,
-                                        marginTop: 0,
-                                        marginBottom: 0,
-                                    },
-                                ]}
-                            >
-                                Show Reviews
-                            </Text>
                         </View>
-                    </Pressable>
+                    </Modal>
+
+                    <RatingReviewsAndSharing
+                        starRatingAverage={
+                            menu.restaurant_reviews.reviews_average
+                                .number_of_stars__avg
+                        }
+                    />
                 </View>
             </View>
         );
