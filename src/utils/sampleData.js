@@ -12,7 +12,7 @@ export var sampleMenu = {
     },
     restaurant_reviews: {
         reviews_average: {
-            number_of_stars__avg: 5.0,
+            number_of_stars__avg: 4.0,
         },
         reviews: [
             {
