@@ -57,33 +57,6 @@ export default function Home() {
                 />
 
                 <View>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalVisible}
-                        onRequestClose={() => {
-                            setModalVisible(!modalVisible);
-                        }}
-                    >
-                        <View style={styles.centeredView}>
-                            <View style={styles.modalView}>
-                                <Text style={styles.modalText}>
-                                    This is a modal, good!
-                                </Text>
-                                <Pressable
-                                    style={[styles.button, styles.buttonClose]}
-                                    onPress={() =>
-                                        setModalVisible(!modalVisible)
-                                    }
-                                >
-                                    <Text style={styles.textStyle}>
-                                        Hide Modal
-                                    </Text>
-                                </Pressable>
-                            </View>
-                        </View>
-                    </Modal>
-
                     <RatingReviewsAndSharing
                         starRatingAverage={
                             menu.restaurant_reviews.reviews_average

@@ -37,7 +37,6 @@ const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
                     setModalVisible(!modalVisible);
                 }}
             >
-                {/* <ModalBackdrop /> */}
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>
@@ -190,6 +189,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     centeredView: {
+        backgroundColor: "rgba(0,0,0,0.6)",
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
