@@ -16,11 +16,14 @@ import {
 } from "../globalDefinitions/globalStyles";
 import StarRating from "./StarRating";
 import { TextInput } from "react-native-paper";
+import TextInputComponent from "../screenComponents/TextInputComponent";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [isEnabled, setIsEnabled] = useState(true);
     const [hasError, setHasError] = useState(false);
+    const [errorText, setErrorText] = useState("");
 
     return (
         <View style={{ display: "flex", flexDirection: "column" }}>
@@ -39,60 +42,77 @@ const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <View style={styles.outsideModal}>
-                    <View style={styles.modalView}>
-                        <StarRating
-                            isDish={false}
-                            categoryIndex={-1}
-                            dishIndex={-1}
-                            itIsEditable={true}
-                            averageRating={0}
-                        />
-                        <TextInput
-                            label="Your Name"
-                            disabled={!isEnabled}
-                            mode="outlined"
-                            style={styles.myText}
-                            keyboardType="default"
-                            secureTextEntry={false}
-                            error={hasError}
-                        />
-                        <TextInput
-                            label="Restaurant Number"
-                            disabled={!isEnabled}
-                            mode="outlined"
-                            style={styles.myText}
-                            keyboardType="decimal-pad"
-                            secureTextEntry={false}
-                            error={hasError}
-                        />
-                        <TextInput
-                            label="Your Review"
-                            disabled={!isEnabled}
-                            mode="outlined"
-                            multiline={true}
-                            numberOfLines={4}
-                            style={styles.myText}
-                            keyboardType="default"
-                            secureTextEntry={false}
-                            error={hasError}
-                        />
-                        <View style={{ display: "flex", flexDirection: "row" }}>
-                            <Pressable
-                                style={[styles.button, styles.buttonOpen]}
-                                onPress={() => setModalVisible(!modalVisible)}
+                <KeyboardAwareScrollView
+                    contentContainerStyle={styles.container}
+                    style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
+                >
+                    <View style={styles.outsideModal}>
+                        <View style={styles.modalView}>
+                            <StarRating
+                                isDish={false}
+                                categoryIndex={-1}
+                                dishIndex={-1}
+                                itIsEditable={true}
+                                averageRating={0}
+                            />
+                            <TextInputComponent
+                                label="Your Name"
+                                disabled={!isEnabled}
+                                multiline={false}
+                                numberOfLines={1}
+                                keyboardType="default"
+                                secureTextEntry={false}
+                                hasError={true}
+                                errorText={"this is an error"}
+                            />
+                            <TextInputComponent
+                                label="Restaurant Number"
+                                disabled={!isEnabled}
+                                multiline={false}
+                                numberOfLines={1}
+                                keyboardType="decimal-pad"
+                                secureTextEntry={false}
+                                hasError={true}
+                                errorText={"this is an error"}
+                            />
+                            <TextInputComponent
+                                label="Your Review"
+                                disabled={!isEnabled}
+                                multiline={true}
+                                numberOfLines={4}
+                                keyboardType="default"
+                                secureTextEntry={false}
+                                hasError={true}
+                                errorText={"this is an error"}
+                            />
+                            <View
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                }}
                             >
-                                <Text style={styles.textStyle}>Submit</Text>
-                            </Pressable>
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.textStyle}>Cancelar</Text>
-                            </Pressable>
+                                <Pressable
+                                    style={[styles.button, styles.buttonOpen]}
+                                    onPress={() =>
+                                        setModalVisible(!modalVisible)
+                                    }
+                                >
+                                    <Text style={styles.textStyle}>Submit</Text>
+                                </Pressable>
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() =>
+                                        setModalVisible(!modalVisible)
+                                    }
+                                >
+                                    <Text style={styles.textStyle}>
+                                        Cancelar
+                                    </Text>
+                                </Pressable>
+                            </View>
                         </View>
                     </View>
-                </View>
+                </KeyboardAwareScrollView>
             </Modal>
 
             <View
@@ -226,6 +246,11 @@ const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
 export default RatingReviewsAndSharing;
 
 const styles = StyleSheet.create({
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+    },
     myText: {
         width: "100%",
     },
