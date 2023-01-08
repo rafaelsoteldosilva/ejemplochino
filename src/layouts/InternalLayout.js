@@ -7,7 +7,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import ShowCategories from "../screens/ShowCategories";
-import DishesNavigator from "./DishesNavigator";
 import { ArgumentContextProvider } from "../globalContexts/argumentContext";
 import ShowDishes from "../screens/ShowDishes";
 import ShowDish from "../screens/ShowDish";

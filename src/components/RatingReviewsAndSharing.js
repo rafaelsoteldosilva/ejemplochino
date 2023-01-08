@@ -15,10 +15,12 @@ import {
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
 import StarRating from "./StarRating";
-import ModalBackdrop from "./ModalBackdrop";
+import { TextInput } from "react-native-paper";
 
 const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(true);
+    const [hasError, setHasError] = useState(false);
 
     return (
         <View style={{ display: "flex", flexDirection: "column" }}>
@@ -30,24 +32,65 @@ const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
                 averageRating={starRatingAverage}
             />
             <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <View style={styles.centeredView}>
+                <View style={styles.outsideModal}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>
-                            This is a modal, good!
-                        </Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
+                        <StarRating
+                            isDish={false}
+                            categoryIndex={-1}
+                            dishIndex={-1}
+                            itIsEditable={true}
+                            averageRating={0}
+                        />
+                        <TextInput
+                            label="Your Name"
+                            disabled={!isEnabled}
+                            mode="outlined"
+                            style={styles.myText}
+                            keyboardType="default"
+                            secureTextEntry={false}
+                            error={hasError}
+                        />
+                        <TextInput
+                            label="Restaurant Number"
+                            disabled={!isEnabled}
+                            mode="outlined"
+                            style={styles.myText}
+                            keyboardType="decimal-pad"
+                            secureTextEntry={false}
+                            error={hasError}
+                        />
+                        <TextInput
+                            label="Your Review"
+                            disabled={!isEnabled}
+                            mode="outlined"
+                            multiline={true}
+                            numberOfLines={4}
+                            style={styles.myText}
+                            keyboardType="default"
+                            secureTextEntry={false}
+                            error={hasError}
+                        />
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                            <Pressable
+                                style={[styles.button, styles.buttonOpen]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={styles.textStyle}>Submit</Text>
+                            </Pressable>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={styles.textStyle}>Cancelar</Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -183,19 +226,23 @@ const RatingReviewsAndSharing = ({ starRatingAverage, reviews }) => {
 export default RatingReviewsAndSharing;
 
 const styles = StyleSheet.create({
+    myText: {
+        width: "100%",
+    },
     itemBox: {
         backgroundColor: "#6669A3",
         padding: 8,
         borderRadius: 8,
     },
-    centeredView: {
-        backgroundColor: "rgba(0,0,0,0.6)",
+    outsideModal: {
         flex: 1,
+        backgroundColor: "rgba(0,0,0,0.6)",
         justifyContent: "center",
         alignItems: "center",
     },
     modalView: {
         backgroundColor: "white",
+        width: "100%",
         borderRadius: 20,
         padding: 35,
         alignItems: "center",
@@ -211,14 +258,16 @@ const styles = StyleSheet.create({
     button: {
         borderRadius: 20,
         padding: 10,
-        elevation: 2,
+        marginTop: 10,
     },
     buttonOpen: {
-        backgroundColor: "#F194FF",
-    },
-    buttonClose: {
         backgroundColor: "#2196F3",
     },
+    buttonClose: {
+        backgroundColor: "#B6D5F3",
+        marginLeft: 10,
+    },
+    buttoncancel: {},
     textStyle: {
         color: "white",
         fontWeight: "bold",

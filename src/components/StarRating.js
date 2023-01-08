@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
         color: "#aaa",
     },
     starSelected: {
-        color: "#F5F70E",
+        color: "#FA9F03",
     },
 });
