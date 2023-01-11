@@ -12,7 +12,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import * as globalConstants from "../globalDefinitions/globalConstants";
-import RatingReviewsAndSharing from "../components/RatingReviewsAndSharing";
+import RatingReviewingAndSharing from "../components/RatingReviewingAndSharing";
 
 import store from "../appStore/store";
 
@@ -24,7 +24,7 @@ import {
     globalImageStyle,
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
-import StarRating from "../components/StarRating";
+import StarRating from "../screenComponents/StarRating";
 
 export default function Home() {
     // const { screenText, setScreenText } = React.useContext(ScreenTextContext);
@@ -57,11 +57,13 @@ export default function Home() {
                 />
 
                 <View>
-                    <RatingReviewsAndSharing
+                    <RatingReviewingAndSharing
                         starRatingAverage={
                             menu.restaurant_reviews.reviews_average
                                 .number_of_stars__avg
                         }
+                        reviews={menu.restaurant_reviews.reviews}
+                        todays_number={menu.restaurant.todays_number}
                     />
                 </View>
             </View>

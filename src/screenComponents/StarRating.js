@@ -14,18 +14,24 @@ export default function StarRating({
     dishIndex,
     itIsEditable,
     averageRating,
+    setNewStarRating,
 }) {
     const [starRating, setStarRating] = useState(averageRating);
+    const [aStarWasClicked, setAStarWasClicked] = useState(false);
 
     useEffect(() => {
         if (!itIsEditable) {
             setStarRating(averageRating);
+        } else {
+            setStarRating(0);
         }
     }, []);
 
     function setRating(newValue) {
         if (!itIsEditable) return;
+        setAStarWasClicked(true);
         setStarRating(newValue);
+        setNewStarRating(newValue);
     }
 
     return (
@@ -74,17 +80,27 @@ export default function StarRating({
                     }
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setRating(5)}>
-                <MaterialIcons
-                    name={starRating >= 5 ? "star" : "star-border"}
-                    size={32}
-                    style={
-                        starRating >= 5
-                            ? styles.starSelected
-                            : styles.starUnselected
-                    }
-                />
-            </TouchableOpacity>
+            <View
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <TouchableOpacity onPress={() => setRating(5)}>
+                    <MaterialIcons
+                        name={starRating >= 5 ? "star" : "star-border"}
+                        size={32}
+                        style={
+                            starRating >= 5
+                                ? styles.starSelected
+                                : styles.starUnselected
+                        }
+                    />
+                </TouchableOpacity>
+                {starRating >= 5 ? <Text> Gracias!</Text> : null}
+            </View>
         </View>
     );
 }
@@ -107,6 +123,6 @@ const styles = StyleSheet.create({
         color: "#aaa",
     },
     starSelected: {
-        color: "#FA9F03",
+        color: "#E6E50B",
     },
 });

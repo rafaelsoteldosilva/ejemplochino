@@ -4,7 +4,7 @@ export var sampleMenu = {
         name: "Best Pizza",
         address: "Fray Camilo Henriquez",
         phone: "+56975703829",
-        todays_key: 0,
+        todays_number: 15,
         website_url: "https://bestpizza.com",
         facade_image_url: "https://i.ibb.co/HpzRt06/best-pizza-facade.jpg",
         logo_image_url: "https://i.ibb.co/9YXH9p0/best-pizza-logo-2.jpg",

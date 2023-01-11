@@ -14,6 +14,8 @@ const TextInputComponent = ({
     numberOfLines,
     keyboardType,
     secureTextEntry,
+    value,
+    setValue,
     hasError,
     errorText,
 }) => {
@@ -28,8 +30,11 @@ const TextInputComponent = ({
                 numberOfLines={numberOfLines}
                 keyboardType={keyboardType}
                 secureTextEntry={secureTextEntry}
+                value={value}
+                onChangeText={(text) => setValue(text)}
                 error={hasError}
             />
+            {/* The leading space before {errorText} is there on purpose */}
             <Text style={{ color: "red", fontSize: 12 }}> {errorText}</Text>
         </View>
     );
