@@ -54,11 +54,11 @@ const RatingReviewingAndSharing = ({
     todays_number,
 }) => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [newStarRating, setNewStarRating] = useState(-1);
+    const [starRatingValue, setStarRatingValue] = useState(-1);
     const [name, setName] = useState("");
     const [restaurantNumber, setRestaurantNumber] = useState(-1);
     const [review, setReview] = useState("");
-    const errorNewStarRating = useRef("");
+    const errorStarRatingValue = useRef("");
     const errorName = useRef("");
     const errorRestaurantNumber = useRef("");
     const errorReview = useRef("");
@@ -67,9 +67,10 @@ const RatingReviewingAndSharing = ({
     function validateEntries() {
         let modalHasErrors = false;
 
-        newStarRating === -1 && requiredFields.rating
-            ? (errorNewStarRating.current = "Por favor, elija su calificación")
-            : (errorNewStarRating.current = "");
+        starRatingValue === -1 && requiredFields.rating
+            ? (errorStarRatingValue.current =
+                  "Por favor, elija su calificación")
+            : (errorStarRatingValue.current = "");
 
         name.length === 0 && requiredFields.name
             ? (errorName.current = "Por favor, escriba su nombre")
@@ -87,7 +88,7 @@ const RatingReviewingAndSharing = ({
 
         modalHasErrors = false;
         modalHasErrors =
-            modalHasErrors || errorNewStarRating.current.length > 0;
+            modalHasErrors || errorStarRatingValue.current.length > 0;
         modalHasErrors = modalHasErrors || errorName.current.length > 0;
         modalHasErrors =
             modalHasErrors || errorRestaurantNumber.current.length > 0;
@@ -96,7 +97,7 @@ const RatingReviewingAndSharing = ({
         if (!modalHasErrors) {
             setModalVisible(!modalVisible);
 
-            setNewStarRating(-1);
+            setStarRatingValue(-1);
             setName("");
             setRestaurantNumber(0);
             setReview("");
@@ -109,11 +110,11 @@ const RatingReviewingAndSharing = ({
     }
 
     function cancelled() {
-        setNewStarRating(-1);
+        setStarRatingValue(-1);
         setName("");
         setRestaurantNumber(0);
         setReview("");
-        errorNewStarRating.current = "";
+        errorStarRatingValue.current = "";
         errorName.current = "";
         errorRestaurantNumber.current = "";
         errorReview.current = "";
@@ -148,8 +149,8 @@ const RatingReviewingAndSharing = ({
                             isDish={false}
                             categoryIndex={-1}
                             dishIndex={-1}
-                            errorText={errorNewStarRating.current}
-                            setNewStarRating={setNewStarRating}
+                            errorText={errorStarRatingValue.current}
+                            setStarRatingValue={setStarRatingValue}
                         />
 
                         <TextInputComponent
@@ -355,7 +356,7 @@ const styles = StyleSheet.create({
     },
     outsideModal: {
         flex: 1,
-        backgroundColor: "rgba(0,0,0,0.6)",
+        backgroundColor: "rgba(0,0,0,0.5)",
         justifyContent: "center",
         alignItems: "center",
     },

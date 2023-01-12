@@ -12,7 +12,7 @@ const StarRatingComponent = ({
     categoryIndex,
     dishIndex,
     errorText,
-    setNewStarRating,
+    setStarRatingValue,
 }) => {
     return (
         <View style={{ width: "100%" }}>
@@ -22,7 +22,7 @@ const StarRatingComponent = ({
                 dishIndex={dishIndex}
                 itIsEditable={true}
                 averageRating={-1}
-                setNewStarRating={setNewStarRating}
+                setStarRatingValue={setStarRatingValue}
             />
             {/* The leading space before {errorText} is there on purpose */}
             <Text

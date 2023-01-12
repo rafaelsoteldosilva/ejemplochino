@@ -14,7 +14,7 @@ export default function StarRating({
     dishIndex,
     itIsEditable,
     averageRating,
-    setNewStarRating,
+    setStarRatingValue,
 }) {
     const [starRating, setStarRating] = useState(averageRating);
     const [aStarWasClicked, setAStarWasClicked] = useState(false);
@@ -31,7 +31,7 @@ export default function StarRating({
         if (!itIsEditable) return;
         setAStarWasClicked(true);
         setStarRating(newValue);
-        setNewStarRating(newValue);
+        setStarRatingValue(newValue);
     }
 
     return (
