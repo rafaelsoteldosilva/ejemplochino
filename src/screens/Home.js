@@ -26,7 +26,7 @@ import {
 } from "../globalDefinitions/globalStyles";
 import StarRating from "../screenComponents/StarRating";
 
-export default function Home() {
+export default function Home({ navigation }) {
     // const { screenText, setScreenText } = React.useContext(ScreenTextContext);
     const menu = useSelector(getRestaurantMenu);
     const insets = useSafeAreaInsets();
@@ -64,6 +64,7 @@ export default function Home() {
                         }
                         reviews={menu.restaurant_reviews.reviews}
                         todays_number={menu.restaurant.todays_number}
+                        navigation={navigation}
                     />
                 </View>
             </View>

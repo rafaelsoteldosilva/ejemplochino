@@ -52,6 +52,7 @@ const RatingReviewingAndSharing = ({
     starRatingAverage,
     reviews,
     todays_number,
+    navigation,
 }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [starRatingValue, setStarRatingValue] = useState(-1);
@@ -63,6 +64,16 @@ const RatingReviewingAndSharing = ({
     const errorRestaurantNumber = useRef("");
     const errorReview = useRef("");
     const [forceRender, setForceRender] = useState(false);
+
+    function GoToShowReviews(reviews) {
+        let propsForShowReviews = {
+            reviews: { reviews },
+        };
+
+        navigation.navigate("ShowReviews", {
+            propsForShowReviews: propsForShowReviews,
+        });
+    }
 
     function validateEntries() {
         let modalHasErrors = false;
@@ -269,7 +280,7 @@ const RatingReviewingAndSharing = ({
                                 backgroundColor: "lightskyblue",
                             },
                         ]}
-                        onPress={() => setModalVisible(!modalVisible)}
+                        onPress={() => GoToShowReviews(reviews)}
                     >
                         <View
                             style={{

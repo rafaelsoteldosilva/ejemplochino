@@ -10,6 +10,7 @@ import ShowCategories from "../screens/ShowCategories";
 import { ArgumentContextProvider } from "../globalContexts/argumentContext";
 import ShowDishes from "../screens/ShowDishes";
 import ShowDish from "../screens/ShowDish";
+import ShowReviews from "../screens/ShowReviews";
 
 const InternalTab = createBottomTabNavigator();
 const InternalLayout = () => {
@@ -63,6 +64,15 @@ const InternalLayout = () => {
                     <InternalTab.Screen
                         name="ShowDish"
                         component={ShowDish}
+                        options={({ route }) => ({
+                            headerShown: false,
+                            tabBarButton: () => null,
+                            tabBarVisible: false, //hide tab bar on this screen
+                        })}
+                    />
+                    <InternalTab.Screen
+                        name="ShowReviews"
+                        component={ShowReviews}
                         options={({ route }) => ({
                             headerShown: false,
                             tabBarButton: () => null,
