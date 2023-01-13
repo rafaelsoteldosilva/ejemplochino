@@ -12,7 +12,7 @@ import ShowDishes from "../screens/ShowDishes";
 import ShowDish from "../screens/ShowDish";
 import ShowReviews from "../screens/ShowReviews";
 
-const InternalTab = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator();
 const InternalLayout = () => {
     const insets = useSafeAreaInsets();
 
@@ -23,7 +23,7 @@ const InternalLayout = () => {
             <View style={AppStyle(insets).applicationStyle}>
                 <StatusBar style="light" />
 
-                <InternalTab.Navigator
+                <BottomTab.Navigator
                     initialRouteName="Menu Card"
                     screenOptions={{
                         tabBarActiveTintColor: "white",
@@ -33,7 +33,7 @@ const InternalLayout = () => {
                         },
                     }}
                 >
-                    <InternalTab.Screen
+                    <BottomTab.Screen
                         name="Home"
                         options={({ route }) => ({
                             headerShown: false,
@@ -45,14 +45,14 @@ const InternalLayout = () => {
                         })}
                         component={Home}
                     />
-                    <InternalTab.Screen
+                    <BottomTab.Screen
                         name="Menu Card"
                         options={({ route }) => ({
                             headerShown: false,
                         })}
                         component={ShowCategories}
                     />
-                    <InternalTab.Screen
+                    <BottomTab.Screen
                         name="ShowDishes"
                         component={ShowDishes}
                         options={({ route }) => ({
@@ -61,7 +61,7 @@ const InternalLayout = () => {
                             tabBarVisible: false, //hide tab bar on this screen
                         })}
                     />
-                    <InternalTab.Screen
+                    <BottomTab.Screen
                         name="ShowDish"
                         component={ShowDish}
                         options={({ route }) => ({
@@ -70,7 +70,7 @@ const InternalLayout = () => {
                             tabBarVisible: false, //hide tab bar on this screen
                         })}
                     />
-                    <InternalTab.Screen
+                    <BottomTab.Screen
                         name="ShowReviews"
                         component={ShowReviews}
                         options={({ route }) => ({
@@ -79,7 +79,7 @@ const InternalLayout = () => {
                             tabBarVisible: false, //hide tab bar on this screen
                         })}
                     />
-                </InternalTab.Navigator>
+                </BottomTab.Navigator>
             </View>
         </ArgumentContextProvider>
     );

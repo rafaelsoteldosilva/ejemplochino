@@ -6,6 +6,7 @@ import {
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import ScreenHeader from "../components/ScreenHeader";
 
 const ShowReviews = (props) => {
     const insets = useSafeAreaInsets();
@@ -13,9 +14,13 @@ const ShowReviews = (props) => {
     const myReviews = [
         ...props.route.params.propsForShowReviews.reviews.reviews,
     ];
-    console.log(props.navigation);
     return (
         <View style={[AppStyle(insets).applicationStyle]}>
+            <ScreenHeader
+                navigation={props.navigation}
+                currentScreen={"Restaurant Reviews"}
+                previousScreen={"Home"}
+            />
             <FlatList
                 data={myReviews}
                 keyExtractor={(item) => item.review.id}

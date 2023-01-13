@@ -13,11 +13,11 @@ import {
     globalTextStyle,
 } from "../globalDefinitions/globalStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ArgumentContext } from "../globalContexts/argumentContext";
+import ScreenHeader from "../components/ScreenHeader";
 
 export default function ShowDish(props) {
     const menu = useSelector(getRestaurantMenu);
-    const { argument, setArgument } = useContext(ArgumentContext);
+    const navigation = props.navigation;
 
     const insets = useSafeAreaInsets();
     let catIndex = props.route.params.propsForShowDish.categoryIndex;
@@ -37,6 +37,11 @@ export default function ShowDish(props) {
     else
         return (
             <View style={AppStyle(insets).applicationStyle}>
+                <ScreenHeader
+                    navigation={navigation}
+                    currentScreen={dish.description.slice(0, 40)}
+                    previousScreen={"ShowDishes"}
+                />
                 <Image
                     source={{ uri: dish.image_url }}
                     style={globalImageStyle.image}
